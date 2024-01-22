@@ -1,0 +1,76 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Google Ads Change History</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Google Ads Change History</h1>
+<table id="change_history_table">
+<thead>
+<tr>
+<th>Timestamp</th>
+<th>User</th>
+<th>Attribute</th>
+<th>Old Value</th>
+<th>New Value</th>
+</tr>
+</thead>
+<tbody>
+{% for change in change_history %}
+<tr>
+<td>{{ change['date'] }}</td>
+<td>{{ change['user'] }}</td>
+<td>{{ change['attribute'] }}</td>
+<td>{{ change['old_value'] }}</td>
+<td>{{ change['new_value'] }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+<form action="/export_data" method="POST">
+<label for="export_format">Export Format:</label>
+<select name="export_format">
+<option value="csv">CSV</option>
+<option value="excel">Excel</option>
+</select>
+<input type="submit" value="Export Data">
+</form>
+</body>
+</html>
+
+
+### Style.css
+
+css
+body {
+font-family: sans-serif;
+margin: 0;
+padding: 0;
+}
+
+h1 {
+margin-bottom: 1rem;
+}
+
+table {
+border-collapse: collapse;
+width: 100%;
+}
+
+th, td {
+border: 1px solid #ddd;
+padding: 8px;
+}
+
+th {
+text-align: left;
+}
+
+#change_history_table {
+margin-top: 1rem;
+}
+
